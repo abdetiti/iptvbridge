@@ -29,7 +29,7 @@ export const PACKAGE_CONTENT: Record<PlanTier, { zenders: string; vod: string; e
   Premium: {
     zenders: '80.000+ zenders',
     vod: '200.000+ films en series',
-    extra: 'Krachtigere server, gemaakt voor drukke live-momenten zoals sport',
+    extra: 'Krachtigere server, gemaakt voor drukke live-momenten',
   },
 };
 
@@ -37,7 +37,7 @@ export const PACKAGE_CONTENT: Record<PlanTier, { zenders: string; vod: string; e
 export const PACKAGE_FEATURES: Record<PlanTier, { title: string; items: string[] }[]> = {
   Premium: [
     { title: 'Aanbod', items: ['80.000+ zenders', '200.000+ films en series', 'Nederlandse zenders en internationale tv', 'Live sport: Eredivisie, Premier League, Champions League, Formule 1 en meer', 'Familie, kinderen en nieuws'] },
-    { title: 'Kwaliteit', items: ['Krachtigere Premium-server', 'Gemaakt voor drukke live-momenten, zoals sport', 'Beeld in SD, HD, Full HD en 4K', 'Programmagids (EPG)'] },
+    { title: 'Kwaliteit', items: ['Krachtigere Premium-server', 'Gemaakt voor drukke live-momenten', 'Beeld in SD, HD, Full HD en 4K', 'Programmagids (EPG)'] },
     { title: 'Service', items: ['Direct actief na je betaling', 'Hulp 24/7 in het Nederlands via WhatsApp', 'Installatiehulp op jouw apparaat', 'Werkt op Smart TV, box, Fire TV Stick, telefoon en computer'] },
   ],
   Standard: [

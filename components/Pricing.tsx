@@ -82,7 +82,7 @@ export function Pricing({ refPrefix = 'home' }: { refPrefix?: string }) {
           const premium = t === 'Premium';
           return (
             <div key={t} className={`relative rounded-[28px] p-6 sm:p-7 flex flex-col ${premium ? 'water text-foam shadow-[0_30px_60px_-30px_rgba(13,47,61,.8)]' : 'bg-card border border-line'}`}>
-              {premium && <span className="absolute -top-3.5 left-6 px-3 py-1 rounded-full text-sm font-bold bg-signal text-ink border-2 border-ink">{promoActive(m) ? 'Beste deal' : 'Aanrader voor sport'}</span>}
+              {premium && <span className="absolute -top-3.5 left-6 px-3 py-1 rounded-full text-sm font-bold bg-signal text-ink border-2 border-ink">Beste deal</span>}
               <p className={`text-[15px] font-semibold ${premium ? 'text-haze' : 'text-soft'}`}>{promoActive(m) ? `${m} + ${PROMO.bonusMonths} maanden` : `${m} maanden`}</p>
               <h3 className={`font-display text-[28px] font-bold tracking-[-0.03em] leading-none ${premium ? 'text-foam' : 'text-ink'}`}>{t}</h3>
               <div className="mt-4">
