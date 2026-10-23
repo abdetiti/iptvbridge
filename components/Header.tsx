@@ -35,10 +35,13 @@ export function Header() {
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setOpen(false); };
+    window.addEventListener('keydown', onKey);
+    return () => { document.body.style.overflow = ''; window.removeEventListener('keydown', onKey); };
   }, [open]);
 
   return (
+    <>
     <header className="sticky top-0 z-40 bg-fog/90 backdrop-blur-xl border-b border-line" style={{ paddingTop: 'env(safe-area-inset-top, 0px)' }}>
       <div className="max-w-6xl mx-auto h-[66px] flex items-center justify-between gap-3" style={{ paddingLeft: 'max(16px, env(safe-area-inset-left, 0px))', paddingRight: 'max(16px, env(safe-area-inset-right, 0px))' }}>
         <Link href="/" aria-label="iptv bridge, naar de homepage" onClick={() => setOpen(false)}>
@@ -59,7 +62,7 @@ export function Header() {
             <img src="/images/logos/whatsapp/whatsapp-blanc.svg" alt="" className="w-[19px] h-[19px]" />
             <span className="hidden sm:inline">WhatsApp</span>
           </a>
-          <button type="button" className="lg:hidden w-11 h-11 rounded-2xl btn-line flex items-center justify-center" aria-label={open ? 'Menu sluiten' : 'Menu openen'} aria-expanded={open} onClick={() => setOpen(!open)}>
+          <button type="button" className="lg:hidden w-11 h-11 rounded-2xl btn-line flex items-center justify-center" aria-label={open ? 'Menu sluiten' : 'Menu openen'} aria-expanded={open} aria-controls="mobiel-menu" onClick={() => setOpen(!open)}>
             {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
@@ -71,8 +74,11 @@ export function Header() {
         <span ref={lamp} className="absolute right-1.5 -top-[4px] w-3 h-3 rounded-full bg-signal border-2 border-ink transition-opacity" style={{ opacity: 0 }} />
       </div>
 
+    </header>
+
+      {/* Menu mobile : en dehors de l'en-tête (le flou de l'en-tête bloquait le plein écran) */}
       {open && (
-        <div className="lg:hidden fixed inset-x-0 top-[calc(66px+env(safe-area-inset-top,0px))] bottom-0 fog fade-in overflow-y-auto">
+        <div id="mobiel-menu" className="lg:hidden fixed inset-x-0 top-[calc(66px+env(safe-area-inset-top,0px))] bottom-0 z-[45] fog fade-in overflow-y-auto overscroll-contain">
           <nav aria-label="Mobiel menu" className="flex flex-col p-4 gap-1 pb-32">
             {NAV.map((n, k) => (
               <Link key={n.href} href={n.href} onClick={() => setOpen(false)} className="flex items-center justify-between px-3 py-3.5 rounded-2xl hover:bg-ink/[.05]">
@@ -94,6 +100,6 @@ export function Header() {
           </nav>
         </div>
       )}
-    </header>
+    </>
   );
 }
