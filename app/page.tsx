@@ -108,15 +108,10 @@ export default function Home() {
         </ul>
       </section>
 
-      {/* Prix */}
-      <Section id="prijzen" plate="Prijzen" n={1} title="Kies je pakket" intro="Kies de looptijd en het aantal schermen. Hoe langer je kiest, hoe lager de prijs per maand.">
-        <Pricing refPrefix="home" />
-      </Section>
-
       {/* Aanbod : carrousel klapbrug */}
       <section className="pt-16 sm:pt-24 pb-6" aria-labelledby="aanbod-title">
         <div className="max-w-6xl mx-auto mb-6 space-y-4" style={gutter}>
-          <Plate n={2} label="Het aanbod" />
+          <Plate n={1} label="Het aanbod" />
           <h2 id="aanbod-title" className="display text-[clamp(32px,8.6vw,56px)] text-ink max-w-2xl">Wat je kijkt met iptv bridge</h2>
           <p className="text-[18px] text-soft max-w-2xl">Swipe door het aanbod: de kaart in het midden ligt plat, als een brug die dicht is.</p>
         </div>
@@ -144,7 +139,7 @@ export default function Home() {
         <div className="water text-foam pt-10 pb-16 sm:pb-24">
           <div className="max-w-6xl mx-auto" style={gutter}>
             <div className="mb-9 space-y-4 max-w-2xl">
-              <Plate n={3} label="Elk scherm" dark />
+              <Plate n={2} label="Elk scherm" dark />
               <h2 id="schermen-title" className="display text-[clamp(32px,8.6vw,56px)] text-foam">Eén abonnement, een brug naar elk scherm</h2>
               <p className="text-[18px] text-haze">Je abonnement staat niet vast aan één kastje. Je koppelt het aan het apparaat dat je al hebt, en met 2 tot 4 schermen kijkt iedereen in huis op zijn eigen plek.</p>
             </div>
@@ -164,7 +159,7 @@ export default function Home() {
       </section>
 
       {/* Overstappen */}
-      <Section id="overstappen" plate="Overstappen" n={4} title="Bridge tv iptv: van kabel naar internet" intro="Bij iptv bridge komt je tv binnen via internet, niet via de kabel of een schotel. Dit is alles wat je nodig hebt om over te stappen.">
+      <Section id="overstappen" plate="Overstappen" n={3} title="Bridge tv iptv: van kabel naar internet" intro="Bij iptv bridge komt je tv binnen via internet, niet via de kabel of een schotel. Dit is alles wat je nodig hebt om over te stappen.">
         <ol className="grid md:grid-cols-3 gap-3">
           {NEEDS.map((n, k) => (
             <li key={n.t} className="relative p-6 rounded-[24px] bg-card border-2 border-ink overflow-hidden">
@@ -180,7 +175,7 @@ export default function Home() {
       {/* Sport */}
       <section className="pb-16 sm:pb-24" aria-labelledby="sport-title">
         <div className="max-w-6xl mx-auto mb-6 space-y-4" style={gutter}>
-          <Plate n={5} label="Live sport" />
+          <Plate n={4} label="Live sport" />
           <h2 id="sport-title" className="display text-[clamp(32px,8.6vw,56px)] text-ink max-w-2xl">Elke wedstrijd, elke race</h2>
           <p className="text-[18px] text-soft max-w-2xl">Van de Eredivisie tot de Champions League en de Formule 1. Kijk je vaak live sport? Neem Premium: die server is gemaakt voor drukke wedstrijdavonden.</p>
         </div>
@@ -202,7 +197,7 @@ export default function Home() {
         <Quay />
         <div className="water text-foam pt-10 pb-16 sm:pb-24">
           <div className="max-w-6xl mx-auto mb-6 space-y-4" style={gutter}>
-            <Plate n={6} label="Op aanvraag" dark />
+            <Plate n={5} label="Op aanvraag" dark />
             <h2 id="films-title" className="display text-[clamp(32px,8.6vw,56px)] text-foam max-w-2xl">Films en series voor elke avond</h2>
             <p className="text-[18px] text-haze max-w-2xl">140.000+ films en series bij Standard, 200.000+ bij Premium. Op de tv, de tablet of je telefoon.</p>
           </div>
@@ -220,6 +215,11 @@ export default function Home() {
         </div>
         <Quay fill="#edf1f2" className="-mt-[1px] bg-canal" />
       </section>
+
+      {/* Prix */}
+      <Section id="prijzen" plate="Prijzen" n={6} title="Kies je pakket" intro="Kies de looptijd en het aantal schermen. Hoe langer je kiest, hoe lager de prijs per maand.">
+        <Pricing refPrefix="home" />
+      </Section>
 
       {/* Zo werkt het */}
       <Section id="zo-werkt-het" plate="Bestellen" n={7} title="In vier stappen naar de overkant" intro="Geen account, geen formulieren. Alles gaat via WhatsApp, met een mens aan de andere kant.">
