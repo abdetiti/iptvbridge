@@ -1,0 +1,129 @@
+@import "tailwindcss";
+
+/* www.iptv-bridge.com — « De Ophaalbrug » : un pont-levis hollandais au-dessus d'un canal.
+   Brume claire du matin, bleu profond du canal, et une seule couleur forte : le jaune des feux du pont.
+   Le pont s'abaisse et relie ton téléphone (WhatsApp) à ta télé. Chaque section porte un numéro de pont, comme à Amsterdam. */
+@theme {
+  --font-sans: "Instrument Sans Variable", "Helvetica Neue", Arial, system-ui, sans-serif;
+  --font-display: "Unbounded Variable", "Instrument Sans Variable", "Arial Black", sans-serif;
+  --color-fog: #edf1f2;        /* fond : brume du matin sur le canal */
+  --color-card: #ffffff;       /* cartes */
+  --color-ink: #0c2230;        /* texte principal (14,3:1 sur fog) */
+  --color-soft: #4a5d68;       /* texte secondaire (6:1 sur fog) */
+  --color-line: #d3dde1;       /* filets */
+  --color-quay: #c4d2d8;       /* quais, ombres claires */
+  --color-canal: #0d2f3d;      /* sections « canal » */
+  --color-canal2: #134152;     /* cartes sur canal */
+  --color-foam: #eef5f7;       /* texte sur canal (12,8:1) */
+  --color-haze: #a3bcc6;       /* texte secondaire sur canal (7:1) */
+  --color-signal: #f7c51e;     /* le seul accent : le jaune des feux du pont (texte ink 10:1) */
+  --color-signal-ink: #7a5a00; /* accent en texte sur fond clair (5,6:1) */
+  --color-wa: #0f7d42;         /* boutons WhatsApp uniquement (texte blanc 5,2:1) */
+}
+
+:root { color-scheme: light; }
+
+html { -webkit-text-size-adjust: 100%; overflow-x: clip; background: #edf1f2; }
+body {
+  background: #edf1f2;
+  color: #0c2230;
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.62;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, .font-display { font-family: var(--font-display); text-wrap: balance; }
+.display { font-weight: 760; line-height: 1.02; letter-spacing: -0.035em; }
+::selection { background: #f7c51e; color: #0c2230; }
+:focus-visible { outline: 3px solid #0c2230; outline-offset: 3px; border-radius: 8px; box-shadow: 0 0 0 6px #f7c51e; }
+.tnum { font-variant-numeric: tabular-nums; }
+
+/* Le canal : de fines rides d'eau horizontales */
+.water {
+  background-color: #0d2f3d;
+  background-image:
+    radial-gradient(120% 60% at 50% -10%, rgba(247,197,30,.10), transparent 60%),
+    repeating-linear-gradient(180deg, transparent 0 22px, rgba(238,245,247,.045) 22px 23px);
+}
+/* La brume : un très léger dégradé du ciel vers l'eau */
+.fog {
+  background-color: #edf1f2;
+  background-image: linear-gradient(180deg, #f5f8f9 0%, #edf1f2 55%, #e2eaed 100%);
+}
+/* Les planches du tablier du pont */
+.planks { background-image: repeating-linear-gradient(90deg, rgba(12,34,48,.07) 0 1px, transparent 1px 22px); }
+/* Rayures de la barrière (slagboom) */
+.hazard { background-image: repeating-linear-gradient(-45deg, #f7c51e 0 9px, #0c2230 9px 18px); }
+
+/* Boutons */
+.btn-signal { background: #f7c51e; color: #0c2230; box-shadow: 0 -3px 0 rgba(12,34,48,.18) inset, 0 12px 24px -14px rgba(122,90,0,.8); transition: transform .2s cubic-bezier(.3,1.35,.45,1), background .2s; }
+.btn-signal:hover { background: #ffd23d; }
+.btn-signal:active { transform: translateY(2px); }
+.btn-line { background: #fff; border: 2px solid #0c2230; color: #0c2230; transition: transform .2s cubic-bezier(.3,1.35,.45,1), background .2s; }
+.btn-line:hover { background: #f5f8f9; }
+.btn-line:active { transform: translateY(2px); }
+.btn-foam { background: rgba(238,245,247,.07); border: 2px solid rgba(238,245,247,.5); color: #eef5f7; transition: transform .2s, background .2s; }
+.btn-foam:hover { background: rgba(238,245,247,.14); }
+
+/* Plaque de numéro de pont (comme les ponts numérotés d'Amsterdam) */
+.plate { display: inline-flex; align-items: center; gap: .5rem; font-family: var(--font-display); font-weight: 700; font-size: 12.5px; letter-spacing: .08em; text-transform: uppercase; }
+
+/* ─── Le moment signature : le pont s'abaisse, la barrière se lève, le message traverse, la télé s'allume ─── */
+@keyframes waveA { from { transform: translateX(0); } to { transform: translateX(-80px); } }
+.wave-a { animation: waveA 7s linear infinite; }
+.wave-b { animation: waveA 11s linear infinite reverse; }
+@keyframes blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: .15; } }
+.lamp-blink { animation: blink .7s steps(1) infinite; }
+.tv-screen { transition: filter .9s cubic-bezier(.2,.8,.2,1); filter: brightness(.28) saturate(.2); }
+.tv-on .tv-screen { filter: none; }
+.tv-glow { opacity: 0; transition: opacity 1s ease .1s; }
+.tv-on .tv-glow { opacity: 1; }
+
+/* Titre : les mots s'emboîtent comme les deux moitiés d'un pont */
+.join > span { display: inline-block; animation: joinL .9s cubic-bezier(.3,1.3,.45,1) both; }
+.join > span:nth-child(even) { animation-name: joinR; }
+@keyframes joinL { from { transform: translateX(-.35em) rotate(-4deg); opacity: .15; } to { transform: none; opacity: 1; } }
+@keyframes joinR { from { transform: translateX(.35em) rotate(4deg); opacity: .15; } to { transform: none; opacity: 1; } }
+
+/* Carrousel « klapbrug » : les cartes sur les côtés sont relevées comme un tablier ; celle du milieu se pose à plat */
+.leaf-item { transition: transform .65s cubic-bezier(.3,1.3,.45,1), opacity .5s; transform-origin: 50% 100%; transform: perspective(900px) rotateX(9deg) translateY(10px) scale(.95); opacity: .8; }
+.leaf-item.is-down { transform: none; opacity: 1; }
+@media (min-width: 1024px) { .leaf-item { transform: none; opacity: 1; } .leaf-item:hover { transform: translateY(-6px); } }
+
+/* Images qui changent sur l'écran */
+@keyframes swapIn { from { opacity: 0; transform: scale(1.05); } to { opacity: 1; transform: none; } }
+.swap-in { animation: swapIn .6s cubic-bezier(.2,.8,.2,1) both; }
+
+/* Le prix arrive en glissant sur le tablier */
+@keyframes slideIn { from { transform: translateX(-40%); opacity: 0; } to { transform: none; opacity: 1; } }
+.slide-in { display: inline-block; animation: slideIn .5s cubic-bezier(.3,1.3,.45,1) both; }
+
+/* Texte d'article */
+.prose-brug h2 { font-family: var(--font-display); font-size: 1.7rem; line-height: 1.12; font-weight: 720; letter-spacing: -0.03em; margin: 2.6rem 0 .9rem; color: #0c2230; }
+.prose-brug h3 { font-family: var(--font-sans); font-size: 1.22rem; font-weight: 700; margin: 1.6rem 0 .4rem; color: #0c2230; }
+.prose-brug p { margin: .9rem 0; color: #253a46; }
+.prose-brug ul, .prose-brug ol { padding-left: 1.35rem; margin: .9rem 0; color: #253a46; }
+.prose-brug ul { list-style: square; }
+.prose-brug ol { list-style: decimal; }
+.prose-brug li { margin: .45rem 0; }
+.prose-brug li::marker { color: #0c2230; }
+.prose-brug strong { color: #0c2230; }
+.prose-brug a { color: #0c2230; font-weight: 650; text-decoration: underline; text-decoration-color: #f7c51e; text-underline-offset: 4px; text-decoration-thickness: 3px; }
+.prose-brug a:hover { background: rgba(247,197,30,.25); }
+.link { font-weight: 700; color: #0c2230; text-decoration: underline; text-decoration-color: #f7c51e; text-underline-offset: 4px; text-decoration-thickness: 3px; }
+.link-foam { font-weight: 700; color: #eef5f7; text-decoration: underline; text-decoration-color: #f7c51e; text-underline-offset: 4px; text-decoration-thickness: 3px; }
+
+.pb-wa { padding-bottom: calc(6.5rem + env(safe-area-inset-bottom, 0px)); }
+.no-scrollbar { scrollbar-width: none; } .no-scrollbar::-webkit-scrollbar { display: none; }
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.fade-in { animation: fadeIn .3s ease-out; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  .join > span { transform: none; opacity: 1; }
+  .leaf-item { transform: none; opacity: 1; }
+  .lamp-blink { opacity: 1; }
+}
